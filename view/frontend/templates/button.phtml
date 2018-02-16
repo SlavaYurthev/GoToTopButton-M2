@@ -1,0 +1,13 @@
+<?php
+/**
+ * Go To Top Button
+ * 
+ * @author Slava Yurthev
+ */
+?>
+<?php if($this->isActive()): ?>
+	<a href="javascript:void(0)" class="gototopbutton" data-mage-init='{"SY_GoToTopButton/js/button":<?php echo $this->getConfigJson(); ?>}' style="display:none"><img src="<?php echo $this->getImageUrl(); ?>"></a>
+	<style type="text/css">
+		<?php echo $this->getConfig('general/css'); ?>
+	</style>
+<?php endif; ?>
