@@ -15,7 +15,6 @@ class Button extends \Magento\Framework\View\Element\Template {
 		\Magento\Framework\View\Element\Template\Context $context,
 		\SY\GoToTopButton\Helper\Data $helper,
 		\Magento\Framework\Filesystem\DirectoryList $directoryList,
-		\Magento\Framework\View\Asset\Repository $assetRepository,
 		array $data = []
 	){
 		$this->helper = $helper;
