@@ -8,25 +8,24 @@ namespace SY\GoToTopButton\Block;
 
 class Button extends \Magento\Framework\View\Element\Template {
 	protected $helper;
-	protected $store;
 	protected $directoryList;
-	protected $assetRepository;
+	protected $_storeManager;
+	protected $_assetRepository;
 	public function __construct(
 		\Magento\Framework\View\Element\Template\Context $context,
 		\SY\GoToTopButton\Helper\Data $helper,
-		\Magento\Store\Model\StoreManagerInterface $store,
 		\Magento\Framework\Filesystem\DirectoryList $directoryList,
 		\Magento\Framework\View\Asset\Repository $assetRepository,
 		array $data = []
 	){
 		$this->helper = $helper;
-		$this->store = $store;
 		$this->directoryList = $directoryList;
-		$this->assetRepository = $assetRepository;
+		$this->_storeManager = $context->getStoreManager();
+		$this->_assetRepository = $context->getAssetRepository();
 		parent::__construct($context, $data);
 	}
 	public function getConfig(string $key){
-		return $this->helper->getConfigValue($key, $this->store->getStore()->getId());
+		return $this->helper->getConfigValue($key, $this->_storeManager->getStore()->getId());
 	}
 	public function isActive(){
 		return ($this->getConfig('general/active') == "1");
@@ -44,7 +43,7 @@ class Button extends \Magento\Framework\View\Element\Template {
 				return rtrim($this->getBaseUrl(), '/').'/'.$imageUrl;
 			}
 		}
-		return $this->assetRepository->createAsset(
+		return $this->_assetRepository->createAsset(
 				'SY_GoToTopButton::images/default.png', 
 				['area' => 'frontend']
 			)->getUrl();
