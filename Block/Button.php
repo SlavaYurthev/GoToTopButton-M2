@@ -23,7 +23,7 @@ class Button extends \Magento\Framework\View\Element\Template {
 		$this->_assetRepository = $context->getAssetRepository();
 		parent::__construct($context, $data);
 	}
-	public function getConfig(string $key){
+	public function getConfig($key){
 		return $this->helper->getConfigValue($key, $this->_storeManager->getStore()->getId());
 	}
 	public function isActive(){
